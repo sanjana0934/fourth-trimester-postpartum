@@ -29,13 +29,13 @@ export default function RootLayout({
           <div className="container mx-auto flex h-16 items-center justify-between px-4">
             <div className="flex items-center gap-2">
               <span className="font-serif text-xl font-bold text-primary-foreground">
-                Fourth Trimester
+                Bloom Mode
               </span>
             </div>
             <nav className="flex items-center gap-6">
               <a href="/" className="text-sm font-medium hover:text-primary transition-colors">Home</a>
-              <a href="/mother" className="text-sm font-medium hover:text-primary transition-colors">Mother Mode</a>
-              <a href="/family" className="text-sm font-medium hover:text-primary transition-colors">Family Mode</a>
+              <a href="/mother" className="text-sm font-medium hover:text-primary transition-colors">Bloom Mode</a>
+              <a href="/family" className="text-sm font-medium hover:text-primary transition-colors">Bloom Circle</a>
             </nav>
           </div>
         </header>

@@ -14,7 +14,7 @@ export default function Home() {
         </p>
 
         <div className="grid gap-8 sm:grid-cols-2">
-          {/* Mother Mode Card */}
+          {/* Bloom Mode Card */}
           <Link
             href="/mother"
             className="group relative overflow-hidden rounded-3xl border bg-card p-8 transition-all hover:shadow-xl hover:shadow-primary/10 active:scale-[0.98]"
@@ -22,14 +22,14 @@ export default function Home() {
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
               <Heart className="h-8 w-8" />
             </div>
-            <h2 className="mb-3 text-2xl font-bold">Mother Mode</h2>
+            <h2 className="text-2xl font-bold mb-3">Bloom Mode</h2>
             <p className="text-muted-foreground">
               Track your mood, physical recovery, and talk to your 3AM AI companion.
             </p>
             <div className="absolute bottom-0 left-0 h-1 w-full scale-x-0 bg-primary transition-transform group-hover:scale-x-100" />
           </Link>
 
-          {/* Family Mode Card */}
+          {/* Bloom Circle Card */}
           <Link
             href="/family"
             className="group relative overflow-hidden rounded-3xl border bg-card p-8 transition-all hover:shadow-xl hover:shadow-secondary/10 active:scale-[0.98]"
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10 text-secondary transition-transform group-hover:scale-110">
               <Users className="h-8 w-8" />
             </div>
-            <h2 className="mb-3 text-2xl font-bold">Family Mode</h2>
+            <h2 className="text-2xl font-bold mb-3">Bloom Circle</h2>
             <p className="text-muted-foreground">
               Learn how to support her journey, track daily care items, and stay alert to her needs.
             </p>
