@@ -29,8 +29,9 @@ export default function MotherPage() {
 
     useEffect(() => {
         const token = localStorage.getItem("access_token");
-        if (!token) {
-            router.push("/login");
+        const role = localStorage.getItem("user_role");
+        if (!token || role !== "MOTHER") {
+            router.push("/login?error=unauthorized");
         }
     }, [router]);
 

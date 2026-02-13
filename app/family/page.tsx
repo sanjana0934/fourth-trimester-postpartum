@@ -37,8 +37,9 @@ export default function FamilyPage() {
 
     useEffect(() => {
         const token = localStorage.getItem("access_token");
-        if (!token) {
-            router.push("/login");
+        const role = localStorage.getItem("user_role");
+        if (!token || role !== "FAMILY") {
+            router.push("/login?error=unauthorized");
         }
     }, [router]);
 
