@@ -1,0 +1,148 @@
+"use client";
+
+import { Info, ShieldAlert, Heart, Users, BookOpen, CheckSquare, Bell } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { CareChecklist } from "@/components/family/CareChecklist";
+import { SmartAlerts } from "@/components/family/SmartAlerts";
+import { Reminders } from "@/components/family/Reminders";
+
+const awarenessCards = [
+    {
+        title: "What is PPD?",
+        content: "Postpartum depression is more than just 'baby blues.' It's a serious but treatable medical condition involving feelings of extreme sadness, anxiety, and exhaustion.",
+        icon: <Info className="h-4 w-4 text-blue-500" />,
+    },
+    {
+        title: "Hormonal Shifts",
+        content: "After birth, the rapid drop in estrogen and progesterone can trigger chemical changes in the brain that result in significant mood swings.",
+        icon: <Heart className="h-4 w-4 text-pink-500" />,
+    },
+    {
+        title: "Signs of Distress",
+        content: "Watch for withdrawal from family, loss of appetite, inability to sleep even when the baby is sleeping, or intense irritability.",
+        icon: <ShieldAlert className="h-4 w-4 text-orange-500" />,
+    },
+    {
+        title: "How to Help",
+        content: "Offer practical help (dishes, laundry), ensure she eats, encourage sleep, and listen without judgment. You are her primary support line.",
+        icon: <Users className="h-4 w-4 text-green-500" />,
+    },
+];
+
+export default function FamilyPage() {
+    const [activeTab, setActiveTab] = useState<"alerts" | "checklist" | "learn">("alerts");
+
+    const tabs = [
+        { id: "alerts", label: "Live Alerts", icon: <ShieldAlert className="h-4 w-4" /> },
+        { id: "checklist", label: "Care Guide", icon: <CheckSquare className="h-4 w-4" /> },
+        { id: "learn", label: "Awareness", icon: <BookOpen className="h-4 w-4" /> },
+    ];
+
+    return (
+        <div className="min-h-[calc(100vh-64px)] bg-muted/20">
+            <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4 py-8">
+
+                {/* Desktop Sidebar Navigation */}
+                <aside className="hidden md:flex w-64 shrink-0 flex-col gap-2">
+                    <div className="mb-6 px-4">
+                        <h1 className="font-serif text-2xl font-bold italic text-secondary-foreground">Family Circle</h1>
+                        <p className="text-xs text-muted-foreground italic">Support for her, awareness for you.</p>
+                    </div>
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id as any)}
+                            className={cn(
+                                "flex items-center gap-3 rounded-2xl px-4 py-3 transition-all",
+                                activeTab === tab.id
+                                    ? "bg-secondary text-secondary-foreground font-bold shadow-md shadow-secondary/20"
+                                    : "text-muted-foreground hover:bg-white/50"
+                            )}
+                        >
+                            <div className={cn("p-1.5 rounded-lg", activeTab === tab.id ? "bg-white/20" : "bg-muted/50")}>
+                                {tab.icon}
+                            </div>
+                            <span className="text-sm font-medium">{tab.label}</span>
+                        </button>
+                    ))}
+                </aside>
+
+                {/* Mobile Tab Navigation */}
+                <nav className="md:hidden sticky top-16 z-40 flex w-full border-b bg-background/80 px-2 py-2 backdrop-blur-md">
+                    <div className="flex w-full justify-around">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id as any)}
+                                className={cn(
+                                    "flex flex-col items-center gap-1 rounded-xl px-4 py-2 transition-all",
+                                    activeTab === tab.id
+                                        ? "bg-secondary/10 text-secondary-foreground font-bold"
+                                        : "text-muted-foreground"
+                                )}
+                            >
+                                {tab.icon}
+                                <span className="text-[10px] uppercase tracking-wider">{tab.label}</span>
+                            </button>
+                        ))}
+                    </div>
+                </nav>
+
+                <main className="flex-1 w-full max-w-2xl mx-auto md:mx-0">
+                    <div className="md:hidden mb-8 text-center pt-4">
+                        <h1 className="font-serif text-3xl font-bold italic text-secondary-foreground">Family Circle</h1>
+                        <p className="text-muted-foreground">Support for her, awareness for you.</p>
+                    </div>
+
+                    <div className="pb-20">
+                        {activeTab === "alerts" && (
+                            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+                                <SmartAlerts />
+                                <Reminders />
+                            </div>
+                        )}
+
+                        {activeTab === "checklist" && (
+                            <div className="animate-in fade-in slide-in-from-bottom-4">
+                                <CareChecklist />
+                            </div>
+                        )}
+
+                        {activeTab === "learn" && (
+                            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+                                <h2 className="text-2xl font-bold px-2">Understanding Postpartum</h2>
+                                <div className="grid gap-4">
+                                    {awarenessCards.map((card, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="rounded-3xl border bg-card p-6 shadow-sm transition-all hover:shadow-md"
+                                        >
+                                            <div className="mb-3 flex items-center gap-3">
+                                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted/30">
+                                                    {card.icon}
+                                                </div>
+                                                <h3 className="text-lg font-bold">{card.title}</h3>
+                                            </div>
+                                            <p className="text-sm leading-relaxed text-muted-foreground">
+                                                {card.content}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="rounded-3xl bg-secondary/10 p-8 text-center border-2 border-dashed border-secondary/20">
+                                    <BookOpen className="mx-auto mb-4 h-12 w-12 text-secondary/40" />
+                                    <h3 className="mb-2 font-bold">More Resources Coming soon</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        We're building a directory of local clinics and support groups.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
+}
